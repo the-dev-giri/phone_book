@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-const url =`mongodb+srv://BEdevloper:Love123@cluster0.zhysiur.mongodb.net/?retryWrites=true&w=majority`
  const noteSchema = new mongoose.Schema({
     content: String,
      date: Date,

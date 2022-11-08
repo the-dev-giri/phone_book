@@ -6,7 +6,7 @@
 
 const http = require('http')
 
-const phonebook = 
+const phone_book = 
     [
         { 
           "id": 1,
@@ -30,22 +30,22 @@ const phonebook =
         }
     
 ]
-phbook.get('/',(req,res)=>{
+app.get('/',(req,res)=>{
     res.send('<h1>My Phone Book </h1>')
 })
 //for fetching all data
-  phbook.get('/api/Phonebook/',(req,res)=>{
-    console.log(phonebook)
-    res.json(phonebook)
+  app.get('/api/phone_book/',(req,res)=>{
+    console.log(phone_book)
+    res.json(phone_book)
   })
 /*
   //for fetching a single data
-  phbook.get('/api/Phonebook/:id',(req,res)=>{
+  app.get('/api/Phonebook/:id',(req,res)=>{
     const id = Number(req.params.id)
-    const phB= phonebook.find(phB => phB.id === id)
-    if (phB){
-        console.log(phB)
-        res.json(phB)
+    const phb= phonebook.find(phb => phb.id === id)
+    if (phb){
+        console.log(phb)
+        res.json(phb)
     }
     else{
         res.status(404).end()
@@ -53,13 +53,13 @@ phbook.get('/',(req,res)=>{
     
   })
 */
-phbook.delete('/api/phonebook/:id',(req, res) => {
+app.delete('/api/phone_book/:id',(req, res) => {
   console.log('data is delete now') 
   const id = Number(req.params.id)
-  phB = phonebook.filter(phB => phB.id !== id) 
+  phb = phone_book.filter(phb => phb.id !== id) 
   res.status(204).end()
 })
-const PORT = 3001
-phbook.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`)
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
