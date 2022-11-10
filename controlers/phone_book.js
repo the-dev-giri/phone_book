@@ -1,25 +1,28 @@
-phbook.get('/api/Phonebook/',(req,res)=>{
-    console.log(phonebook)
-    res.json(phonebook)
-})
-phbook.get('/api/Phonebook/:id',(req,res)=>{
-    const id = Number(req.params.id)
-    const phB= phonebook.find(phB => phB.id === id)
-    if (phB){
-        // console.log(phB)
-        res.json(phB)
+app.post('/api/phone_book', (request, response) => {
+    const body = request.body
+  console.log(body)
+    if (!body.contact_name) {
+      return response.status(400).json({ 
+        error: 'contact name missing' 
+      })
     }
-    else{
-        res.status(404).end()
+    else if (!body.contact_number) {
+      return response.status(400).json({ 
+        error: 'contact number missing' 
+      })
     }
-    
+  
+    const phone_book = {
+      contact_name: body.contact_name,
+      contact_number: body.contact_number,
+      id: generateId(),
+    }
+  
+    phone_book = phone_Book.concat(phone_book)
+  
+    response.json(phone_book)
   })
-
-
-  phbook.delete('/api/phonebook/:id',(req, res) => {
-    console.log('data is delete now') 
-    const id = Number(req.params.id)
-    phB = phonebook.filter(phB => phB.id !== id) 
-    res.status(204).end()
+  
+  app.get('/api/phone_book', (req, res) => {
+    res.json(phone_book)
   })
-
