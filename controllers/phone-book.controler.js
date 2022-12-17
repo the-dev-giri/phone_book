@@ -1,4 +1,4 @@
-const Phonebook = require('../models/phonebook.models')
+const Phonebook = require('../models/phone-book.models')
 const createPhonebook =  (request, response) =>{
     const phonebook = request.body
 
